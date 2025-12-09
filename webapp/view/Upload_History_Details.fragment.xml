@@ -1,0 +1,121 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:l="sap.ui.layout" xmlns:m="sap.ui.commons.layout" xmlns:f="sap.ui.layout.form"
+	xmlns:core="sap.ui.core">
+	<Dialog id="HistoryCreateFragment" contentWidth="100%" contentHeight="100%" stretch="true" type="Standard" afterClose="onCloseHistory">
+		<customHeader>
+			<Bar>
+				<contentMiddle>
+					<Label text="Upload Master History Details" design="Bold"></Label>
+				</contentMiddle>
+				<contentRight>
+					<Button icon="sap-icon://decline" press="HistoryClose"></Button>
+				</contentRight>
+				<contentLeft>
+					<!-- <Button id="PR_vCodeSearch_id" text="Search"  press="PR_Create_vCodeSearch" type="Accept"  /> -->
+				</contentLeft>
+			</Bar>
+		</customHeader>
+		<content>
+			<!--<f:SimpleForm id="SimpleFormHeader" editable="true" width="100%" layout="ResponsiveGridLayout" visible="true">
+				<f:content>
+					<Label text="PFR no." design="Bold" class="sapUiTitle"/>
+					<Text id="lbl_pfr_no" text="" class="sapUiTitle"/>
+					<Label text="Supplier Code and Name" design="Bold" class="sapUiTitle"/>
+					<Text id="lbl_sup_code_name" text="" class="sapUiTitle"/>
+					<Label text="Supplier Location" design="Bold" class="sapUiTitle"/>
+					<Text id="lbl_sup_location" text="" class="sapUiTitle"/>
+					<Label text="Mode of Transportation" design="Bold" class="sapUiTitle"/>
+					<Text id="lbl_trans_mode" text="" class="sapUiTitle"/>
+					<Label text="Premium Freight Charges Debit to" design="Bold" class="sapUiTitle"/>
+					<Text id="lbl_debit_supplier" text="" class="sapUiTitle"/>
+					<Label text="Reason for Premium Freight" design="Bold" class="sapUiTitle"/>
+					<Text id="lbl_pfr_reason" text="" class="sapUiTitle"/>
+					<Label text="Tentative Cost" design="Bold" class="sapUiTitle"/>
+					<Text id="lbl_tentative_cost" text="" class="sapUiTitle"/>
+					<Label text="Required Date" design="Bold" class="sapUiTitle"/>
+					<DatePicker id="lbl_req_date" valueFormat="yyyy-MM-ddTKK:mm:ss" value="" editable="false" class="sapUiTitle"/>
+					<Label text="Remarks" id="Remarks_l" design="Bold" class="sapUiTitle"></Label>
+					<TextArea id="Remarks" value="" rows="3" maxLength="255" placeholder="Enter Remarks ..." editable="true" class="sapUiTitle"/>
+				</f:content>
+			</f:SimpleForm>-->
+			<!--<f:SimpleForm id="SimpleFormPFRRemarks"
+						  editable="true"
+						  layout="ResponsiveGridLayout"
+						  visible="true"
+			  			  maxContainerCols="2">	
+			  	<f:content>	
+					<Label text="Remarks" id="Remarks_l" design="Bold" class="sapUiTitle"></Label>
+					<TextArea id="Remarks" value="" rows="3" maxLength="255" placeholder="Enter Remarks ..." wrapping="true" editable="true" class="sapUiTitle"/>			  	
+			  	</f:content>
+			</f:SimpleForm>-->
+			<ScrollContainer id="SC" horizontal="true" vertical="true" height="100%">
+				<Table id="Table" inset="false" visible="true" width="100%" items="{/}">
+					<headerToolbar>
+						<OverflowToolbar>
+							<Label id="Items" text="" design="Bold" class="sapUiTitle"/>
+							<!--<SearchField id="displayPartNoSearch" placeholder="Enter Plant / description...." liveChange="PlantDescriptionSearchField" hAlign="Right" />							-->
+						</OverflowToolbar>
+					</headerToolbar>
+					<!-- Authorization Groups report column headings creation -->
+					<columns>
+						<Column hAlign="Left" width="10em">
+							<!-- 	sortProperty="Prt_No"
+					filterProperty="Prt_No"	 -->
+							<Text text="Check point" wrapping="true" class="TitleId"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<!-- width="5em"> -->
+							<Text text="Check method" wrapping="true" class="TitleId"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<!-- width="5em"> -->
+							<Text text="Complaint type" wrapping="true" class="TitleId"/>
+						</Column>							
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<!-- width="5em"> -->
+							<Text text="Type" wrapping="true" class="TitleId"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<!-- width="5em"> -->
+							<Text text="Lsl" wrapping="true" class="TitleId"/>
+						</Column>
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<!-- width="5em"> -->
+							<Text text="Usl" wrapping="true" class="TitleId"/>
+						</Column>	
+						<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+							<!-- width="5em"> -->
+							<Text text="Uom" wrapping="true" class="TitleId"/>
+						</Column>							
+					</columns>
+					<!-- Parts report data display -->
+					<items>
+						<ColumnListItem>
+							<cells>
+								<Text text="{Check_Point}" class="TitleId"/>
+								<Text text="{Check_Method}" class="TitleId"/>
+								<Text text="{Complaint_Type}" class="TitleId"/>
+								<Text text="{Type}" class="TitleId"/>
+								<Text text="{Lsl}" class="TitleId"/>
+								<Text text="{Usl}" class="TitleId"/>
+								<Text text="{Uom}" class="TitleId"/>
+							</cells>
+						</ColumnListItem>
+					</items>
+				</Table>
+			</ScrollContainer>
+		</content>
+		<!--<buttons>-->
+			<!-- <Button id="UploadAttachmentsId" icon="sap-icon://attachment" type="Accept" visible="false" press="pressattachmentBtn" tooltip="Add Attachment"></Button>
+							 <Button id="addButton" icon="sap-icon://add" type="Accept" visible="false" press="pressFooterAddBut" tooltip="Add LineItem"></Button> 
+							 <Button  id="saveButton" width="5.1rem" text="Save" type="Accept" visible="false" press="pressFooterBut" tooltip="Save"></Button> -->
+			<!--<Button id="ApproveButton" text="Approve" type="Accept" visible="true" press="pressApproveFooterBut" tooltip="Approve"
+				icon="sap-icon://media-forward"></Button>
+			<Button id="RejectButton" text="Discuss" type="Reject" visible="true" press="pressRejectFooterBut" tooltip="Reject"
+				icon="sap-icon://media-rewind"></Button>-->
+			<!--<Button  id="SaveButton" text="Save" type="Accept" visible="false" press="pressSaveFooterBut" tooltip="Save" icon="sap-icon://save"></Button>
+						<Button  id="SubmitButton" text="Submit" type="Accept" visible="false" press="pressSubmitFooterBut" tooltip="Submit" icon="sap-icon://chevron-phase"></Button>-->
+			<!-- <Button id="approveButton" width="5rem" text="Approve" type="Accept" visible="false" press="pressApproveDiscussFooterBut" tooltip="Approve"></Button>
+						<Button id="discussButton" width="5rem" text="Discuss" type="Accept" visible="false" press="pressApproveDiscussFooterBut" tooltip="Discuss"></Button> -->
+		<!--</buttons>-->
+	</Dialog>
+</core:FragmentDefinition>

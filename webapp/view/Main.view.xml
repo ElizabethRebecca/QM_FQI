@@ -1,0 +1,219 @@
+<mvc:View controllerName="Create.FQI_Create.controller.Main" xmlns:l="sap.ui.layout" xmlns:f="sap.ui.layout.form" xmlns:core="sap.ui.core"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<Shell id="shell">
+		<App id="app">
+			<pages>
+				<Page id="page" title="{i18n>title}">
+					<customHeader>
+						<Bar>
+							<!-- <contentLeft>	
+					      <Image src="Images/TVSlogo.png"></Image>
+					    </contentLeft> -->
+							<contentMiddle>
+								<Label text="Functional Quality Index System" design="Bold" class="AppTitleId"/>
+							</contentMiddle>
+							<contentRight>
+								<Text id="lbl_user" text="" class="sapUiTitle"/>
+								<Image width="2.5rem" height="2.5rem" id="loginImageId" class="loginImageClass" press="loginImgPress"></Image>
+							</contentRight>
+						</Bar>
+					</customHeader>
+					<content>
+						<f:SimpleForm id="SimpleFormDetails1" editable="true" class="sapUiTitle" layout="ResponsiveGridLayout" title="Input Details"
+							maxContainerCols="2">
+							<f:content>
+								<Label text="Plant"></Label>
+								<Select id="plants" items="{/}" change="onSelectPlant">
+									<core:Item text="{Plant}" key="{Plant}" class="sapUiTitle"/>
+								</Select>
+								<Label text="Model Name"></Label>
+								<Select id="model_name" items="{/}" change="onSelectModelName">
+									<core:Item text="{Model_Name}" key="{Model_Name}" class="sapUiTitle"/>
+								</Select>
+							</f:content>
+						</f:SimpleForm>
+						<!--<ScrollContainer id="History" horizontal="true" vertical="true" height="100%">-->
+						<!--<Table id="T_History" inset="false" visible="true" width="100%" growing="true" growingThreshold="1" itemPress="HistoryTablePress" items="{/}">-->
+						<Table id="T_History" inset="false" visible="true" itemPress="HistoryTablePress" items="{/}">
+							<headerToolbar>
+								<OverflowToolbar>
+									<Label id="History_Rep" text="Upload Checksheet History" design="Bold" class="sapUiTitle"/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<columns>
+								<Column hAlign="Left">
+									<Text text="S.No." wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="Model" wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="Uploaded by" wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="Date" wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="Revision" wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="Reason" wrapping="true" class="ColTitleId"/>
+								</Column>
+							</columns>
+							<items>
+								<!--<ColumnListItem type="Active">-->
+								<ColumnListItem type="Active">
+									<cells>
+										<!--<Text text="{path:'Pfr_Created_On', formatter:'.formatDate'}" class="TitleId"/>-->
+										<!--<DatePicker value="{Pfr_Created_On}" displayFormat="MMM d, y" valueFormat="MMM d, y" class="dates"/>-->
+										<Text text="{SNo}"/>
+										<Text text="{Model_Name}"/>
+										<!--<ObjectStatus text="{April_Actual}"  state="{path: 'April_Actual', formatter: '.April_Act'}"/>-->
+										<Text text="{Uploaded_By}"/>
+										<!--<Text text="{Entry_Date}"/>-->
+										<Text text="{path:'Entry_Date', formatter:'.formatDate'}"/>
+										<Text text="{Revision_No}"/>
+										<Text text="{Reason}"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						<!--</ScrollContainer>-->
+						<Panel id="Hdr_Dtls" expandable="true" expanded="{panelsModel>/open}" width="auto" visible="false">
+							<headerToolbar>
+								<OverflowToolbar>
+									<!-- <Label text="Header Details" design="Bold" /> -->
+									<Button text="Header Details" press="onExpandedHome"/>
+								</OverflowToolbar>
+							</headerToolbar>
+							<f:SimpleForm id="SimpleFormHdr" editable="true" class="sapUiTitle" layout="ResponsiveGridLayout" visible="false">
+								<f:content>
+									<Label text="Barcode number"></Label>
+									<Input id="BarcodeNo" value="" maxLength="13" placeholder="Enter / Scan the Barcode number..." liveChange="AfterBarcodeNoScanned"
+										class="sapUiTitle"/>
+									<Label text="Frame number"></Label>
+									<Input id="FrameNo" value="" maxLength="17" placeholder="Scan the Frame number..." liveChange="AfterFrameNoScanned" class="sapUiTitle"/>
+									<Label text="Engine number"></Label>
+									<Text id="EngineNo" text="" class="sapUiTitle"/>
+									<Label text="Plant"></Label>
+									<Text id="Plant" text="" class="sapUiTitle"/>
+									<Label text="Production date"></Label>
+									<!--<Text id="Prod_Date" text="{path:'', type : 'sap.ui.model.type.Date', formatOptions: {style : 'long'}" class="sapUiTitle"/>-->
+									<Text id="Prod_Date" text="" class="sapUiTitle"/>
+									<Label text="Posting date"></Label>
+									<!--<Text id="Post_Date" text="{path:'', type : 'sap.ui.model.type.Date', formatOptions: {style : 'long'}" class="sapUiTitle"/>-->
+									<Text id="Post_Date" text="" class="sapUiTitle"/>
+									<Label text="Shift"></Label>
+									<Text id="Shift" text="" class="sapUiTitle"/>
+									<Label text="Shift name"></Label>
+									<Text id="Shift_name" text="" class="sapUiTitle"/>
+									<Label text="Production line"></Label>
+									<Text id="Prod_Line" text="" class="sapUiTitle"/>
+								</f:content>
+							</f:SimpleForm>
+						</Panel>
+						<Table id="T_Upload" inset="false" visible="false" mode="Delete" delete="deleteRow" items="{/}">
+							<headerToolbar>
+								<!--<OverflowToolbar>
+									<Label id="Upload_Rep" text="" design="Bold" class="sapUiTitle"/>
+								</OverflowToolbar>-->
+								<Toolbar>
+									<Label id="Upload_Checksheet" text="Upload Master Checksheet" design="Bold" class="sapUiTitle"/>
+									<ToolbarSpacer></ToolbarSpacer>
+									<Button type="Accept" icon="sap-icon://add" text="Add Row" press="addRow"/>
+								</Toolbar>
+							</headerToolbar>
+							<columns>
+								<Column hAlign="Left">
+									<Text text="Check point" wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="Check method" wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="Complaint type" wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="Type" wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="LSL" wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="USL" wrapping="true" class="ColTitleId"/>
+								</Column>
+								<Column minScreenWidth="Tablet" demandPopin="true" hAlign="Left">
+									<Text text="Uom" wrapping="true" class="ColTitleId"/>
+								</Column>
+							</columns>
+							<items>
+								<!--<ColumnListItem type="Active">-->
+								<ColumnListItem>
+									<cells>
+										<!--<Text text="{path:'Pfr_Created_On', formatter:'.formatDate'}" class="TitleId"/>-->
+										<!--<DatePicker value="{Pfr_Created_On}" displayFormat="MMM d, y" valueFormat="MMM d, y" class="dates"/>-->
+										<!--<Button icon="sap-icon://delete" press="deleteRow" type="Reject"/>-->
+										<Input id="ip_chk_point" valueStateText="Check point is mandatory!!!" value="{Check_Point}" maxLength="255" class="TitleId"/>
+										<!--<Button icon="sap-icon://delete" press="deleteRow" type="Reject"/>-->
+										<Input id="ip_chk_method" valueStateText="Check method is mandatory!!!" value="{Check_Method}" maxLength="255" class="TitleId"/>
+										<!--<ObjectStatus text="{April_Actual}"  state="{path: 'April_Actual', formatter: '.April_Act'}"/>-->
+										<!--<Button icon="sap-icon://delete" press="deleteRow" type="Reject"/>-->
+										<Input id="ip_comp_type" valueStateText="Complaint type is mandatory!!!" value="{Complaint_Type}" maxLength="20" class="TitleId"/>
+										<!--<Select id="ip_comp_type" items="" selectedKey="{Complaint_Type}" change="onSelectComplaintType" visible="true" class="TitleId">
+											<core:Item text="" key="" class="sapUiTitle"/>
+											<core:Item text="ENGINE" key="ENGINE" class="sapUiTitle"/>
+											<core:Item text="BRAKE" key="BRAKE" class="sapUiTitle"/>
+											<core:Item text="TRANSMISSION" key="TRANSMISSION" class="sapUiTitle"/>
+											<core:Item text="FIT & FINISH" key="FIT & FINISH" class="sapUiTitle"/>
+											<core:Item text="RIDE & HANDLING" key="RIDE & HANDLING" class="sapUiTitle"/>
+											<core:Item text="LIGHTS & ELECTRICALS" key="LIGHTS & ELECTRICALS" class="sapUiTitle"/>
+											<core:Item text="GAUGE & CONTROL" key="GAUGE & CONTROL" class="sapUiTitle"/>
+										</Select>-->
+										<Input id="ip_type" valueStateText="Type is mandatory!!!" value="{Type}" maxLength="20" class="TitleId"/>
+										<!--<Select id="ip_type" items="" selectedKey="{Type}" change="onSelectType" visible="true" class="TitleId">
+											<core:Item text="" key="" class="sapUiTitle"/>
+											<core:Item text="Subject" key="Subject" class="sapUiTitle"/>
+											<core:Item text="Object" key="Object" class="sapUiTitle"/>
+										</Select>-->
+										<!--<Text text="{Entry_Date}"/>-->
+										<!--<Button icon="sap-icon://delete" press="deleteRow" type="Reject"/>-->
+										<Input id="ip_lsl" valueStateText="Lsl is mandatory!!!" value="{Lsl}" maxLength="50" class="TitleId"/>
+										<!--<Button icon="sap-icon://delete" press="deleteRow" type="Reject"/>-->
+										<Input id="ip_usl" valueStateText="Usl is mandatory!!!" value="{Usl}" maxLength="50" class="TitleId"/>
+										<!--<Button icon="sap-icon://delete" press="deleteRow" type="Reject"/>-->
+										<Input id="ip_uom" valueStateText="Uom is mandatory!!!" value="{Uom}" maxLength="10" class="TitleId"/>
+									</cells>
+								</ColumnListItem>
+							</items>
+						</Table>
+						<f:SimpleForm id="Reason_Form" editable="true" class="sapUiTitle" layout="ResponsiveGridLayout" visible="false">
+							<f:content>
+								<Label text="Reason for uploading the next revision"></Label>
+								<TextArea id="Reason" placeholder="Enter Reason if applicable..." value="" rows="1"></TextArea>
+							</f:content>
+						</f:SimpleForm>
+					</content>
+					<footer>
+						<Bar>
+							<contentRight>
+								<!-- <Button id="UploadAttachmentsId" icon="sap-icon://attachment" type="Accept" visible="false" press="pressattachmentBtn" tooltip="Add Attachment"></Button>
+										 <Button id="addButton" icon="sap-icon://add" type="Accept" visible="false" press="pressFooterAddBut" tooltip="Add LineItem"></Button> 
+										  -->
+								<!--<Button id="UploadAttachmentsId" icon="sap-icon://attachment" text="Upload" type="Accept" visible="true" press="pressUploadBtn"
+									tooltip="Upload"></Button>-->
+								<Button id="saveButton" icon="sap-icon://save" text="Submit" type="Accept" visible="false" press="pressSaveBut" tooltip="Save"></Button>
+								<Button id="NoOfHits" text="{}" type="Accept" visible="true" tooltip="Hits"></Button>
+								<!--<Button id="submitButton" text="Submit" type="Accept" visible="true" press="pressSubmitFooterBut" tooltip="Submit"
+								icon="sap-icon://chevron-phase"></Button>-->
+								<!--<Button id="approveButton" width="5rem" text="Approve" visible="false" press="pressApproveFooterBut" tooltip="Approve" type="Accept"></Button>-->
+								<!--<Button id="revertButton" width="5rem" text="Revert" visible="false" press="pressRevertFooterBut" tooltip="Revert" type="Reject"></Button>-->
+								<!--<Button id="updateButton" width="5rem" text="Update" visible="false" press="pressUpdateFooterBut" tooltip="Update" type="Accept"></Button>-->
+								<!-- <Button id="discussButton" width="5rem" text="Discuss" type="Accept" visible="false" press="pressApproveDiscussFooterBut" tooltip="Discuss"></Button> -->
+							</contentRight>
+						</Bar>
+					</footer>
+				</Page>
+			</pages>
+		</App>
+	</Shell>
+</mvc:View>

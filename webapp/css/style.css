@@ -1,0 +1,24 @@
+/* Enter your custom styles here */
+/*To set the background color & other properties for the main page*/
+/*.PageCss{*/
+/*	background-color: #f4ffd7;*/
+/*}*/
+
+/*For setting the font family & size for application heading*/
+.AppTitleId{
+	font-family: arial;
+	font-size: 22px;
+}
+
+/*For setting the radius of the image*/
+.loginImageClass{
+	border-radius: 99em; 
+	/*background-color: #95ccec;*/
+}
+
+/* For applying font size to the page title */
+.sapUiTitle {
+	 /*background-color: #95ccec; */
+	font-family: arial;
+	font-size: 15px;
+}
